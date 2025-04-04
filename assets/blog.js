@@ -67,7 +67,7 @@ function createBlogCard(post, isFeatured = false) {
                 <span>${post.date}</span>
                 <span>${post.readTime} read</span>
             </div>
-            <a href="" class="read-more">READ FULL REPORT →</a>
+            <a href="blog.html" class="read-more">READ FULL REPORT →</a>
         </div>
     `;
     
