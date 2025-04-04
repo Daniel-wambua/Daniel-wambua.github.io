@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAVOC - Terms of Service</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6e48aa;
+            --secondary: #9d50bb;
+            --dark: #0d0d15;
+            --darker: #07070b;
+            --light: #e0e0e0;
+            --accent: #ff4d4d;
+            --transition: 0.3s ease;
+            --card-bg: rgba(30, 30, 46, 0.5);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(110, 72, 170, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(157, 80, 187, 0.1) 0%, transparent 20%);
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color var(--transition);
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+        }
+        
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .tab-btn {
+            padding: 1rem 2rem;
+            background: transparent;
+            border: none;
+            color: var(--light);
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            opacity: 0.7;
+            transition: all var(--transition);
+        }
+        
+        .tab-btn.active {
+            opacity: 1;
+            color: var(--accent);
+        }
+        
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent);
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .content-box {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        h3 {
+            color: var(--light);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.2rem;
+        }
+        
+        p, ul {
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        ul {
+            padding-left: 2rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        strong {
+            color: var(--light);
+            font-weight: 600;
+        }
+        
+        .last-updated {
+            text-align: right;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 2rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav {
+                display: flex;
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav a {
+                margin: 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .tabs {
+                flex-wrap: wrap;
+            }
+            
+            .tab-btn {
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .content-box {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="#" class="logo">HAVOC<span>_LEGAL</span></a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="cyberblog.html">Blog</a>
+                <a href="#">Services</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </header>
+        
+        <div class="hero">
+            <h1>Terms & Policies</h1>
+            <p>Last Updated: <span id="current-date"></span></p>
+        </div>
+        
+        <div class="last-updated">
+            <i class="fas fa-history"></i> Last Updated: <span id="current-date-footer"></span>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="tos">Terms of Service</button>
+            <button class="tab-btn" data-tab="privacy">Privacy Policy</button>
+            <button class="tab-btn" data-tab="acceptable-use">Acceptable Use</button>
+        </div>
+        
+        <div class="tab-content active" id="tos">
+            <div class="content-box">
+                <h2>Terms of Service</h2>
+                <p>Welcome to HAVOC. These Terms of Service ("T.O.S") govern your access to and use of our services, including our website, applications, and other offerings (collectively, the "Services").</p>
+                
+                <h3>1. Acceptance of Terms</h3>
+                <p>By accessing or using our Services, you agree to be bound by these Terms. If you do not agree to these Terms, you may not access or use the Services.</p>
+                
+                <h3>2. Eligibility</h3>
+                <p>You must be at least 18 years old to use our Services. By using the Services, you represent and warrant that you meet this age requirement.</p>
+                
+                <h3>3. Account Registration</h3>
+                <p>To access certain features, you may need to register for an account. You agree to:</p>
+                <ul>
+                    <li>Provide accurate and complete information</li>
+                    <li>Maintain the security of your credentials</li>
+                    <li>Accept responsibility for all activities under your account</li>
+                </ul>
+                
+                <h3>4. Intellectual Property</h3>
+                <p>All content, including text, graphics, logos, and software, is our property or our licensors' and is protected by intellectual property laws. You may not reproduce, distribute, or create derivative works without our express permission.</p>
+                
+                <h3>5. Prohibited Conduct</h3>
+                <p>You agree not to:</p>
+                <ul>
+                    <li>Use the Services for any illegal purpose</li>
+                    <li>Attempt to gain unauthorized access to our systems</li>
+                    <li>Reverse engineer or decompile any portion of the Services</li>
+                    <li>Use the Services to distribute malware or engage in hacking activities</li>
+                </ul>
+                
+                <h3>6. Termination</h3>
+                <p>We may suspend or terminate your access to the Services at any time for violations of these Terms or for any other reason at our sole discretion.</p>
+                
+                <h3>7. Disclaimers</h3>
+                <p>THE SERVICES ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. WE DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.</p>
+                
+                <h3>8. Limitation of Liability</h3>
+                <p>IN NO EVENT SHALL WE BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, OR CONSEQUENTIAL DAMAGES ARISING FROM YOUR USE OF THE SERVICES.</p>
+                
+                <h3>9. Governing Law</h3>
+                <p>These Terms shall be governed by the laws of [Your Jurisdiction] without regard to its conflict of law provisions.</p>
+                
+                <h3>10. Changes to Terms</h3>
+                <p>We may modify these Terms at any time. We will notify you of significant changes through the Services or by email. Your continued use constitutes acceptance of the modified Terms.</p>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="privacy">
+            <div class="content-box">
+                <h2>Privacy Policy</h2>
+                <p>This Privacy Policy explains how we collect, use, and protect your personal information when you use our Services.</p>
+                
+                <h3>1. Information We Collect</h3>
+                <p>We may collect:</p>
+                <ul>
+                    <li><strong>Account Information:</strong> Name, email, contact details</li>
+                    <li><strong>Usage Data:</strong> IP addresses, browser type, pages visited</li>
+                    <li><strong>Cookies:</strong> Small data files stored on your device</li>
+                </ul>
+                
+                <h3>2. How We Use Information</h3>
+                <p>We use collected information to:</p>
+                <ul>
+                    <li>Provide and improve our Services</li>
+                    <li>Respond to inquiries and support requests</li>
+                    <li>Detect and prevent security incidents</li>
+                    <li>Comply with legal obligations</li>
+                </ul>
+                
+                <h3>3. Data Sharing</h3>
+                <p>We do not sell your personal information. We may share data with:</p>
+                <ul>
+                    <li>Service providers who assist in operating our Services</li>
+                    <li>Law enforcement when required by law</li>
+                    <li>Affiliates and subsidiaries</li>
+                </ul>
+                
+                <h3>4. Data Security</h3>
+                <p>We implement industry-standard security measures including encryption, access controls, and regular security audits.</p>
+                
+                <h3>5. Your Rights</h3>
+                <p>Depending on your jurisdiction, you may have the right to:</p>
+                <ul>
+                    <li>Access your personal data</li>
+                    <li>Request correction or deletion</li>
+                    <li>Object to processing</li>
+                    <li>Request data portability</li>
+                </ul>
+                
+                <h3>6. International Transfers</h3>
+                <p>Data may be transferred to and processed in countries outside your own. We ensure appropriate safeguards are in place.</p>
+                
+                <h3>7. Children's Privacy</h3>
+                <p>Our Services are not directed to children under 13. We do not knowingly collect information from children.</p>
+                
+                <h3>8. Changes to This Policy</h3>
+                <p>We may update this Policy periodically. We will notify you of significant changes.</p>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="acceptable-use">
+            <div class="content-box">
+                <h2>Acceptable Use Policy</h2>
+                <p>This Acceptable Use Policy ("AUP") outlines prohibited uses of our Services. Violations may result in suspension or termination of access.</p>
+                
+                <h3>1. Illegal Activities</h3>
+                <p>You may not use the Services to engage in or promote illegal activities, including but not limited to:</p>
+                <ul>
+                    <li>Hacking or unauthorized access to systems</li>
+                    <li>Distribution of malware or malicious code</li>
+                    <li>Fraud or financial crimes</li>
+                    <li>Violations of export control laws</li>
+                </ul>
+                
+                <h3>2. Security Violations</h3>
+                <p>Prohibited activities include:</p>
+                <ul>
+                    <li>Network probing or scanning without authorization</li>
+                    <li>Denial of service attacks</li>
+                    <li>Attempts to bypass authentication or security controls</li>
+                    <li>Phishing or social engineering</li>
+                </ul>
+                
+                <h3>3. Content Restrictions</h3>
+                <p>You may not upload, post, or transmit content that:</p>
+                <ul>
+                    <li>Contains viruses or harmful code</li>
+                    <li>Is defamatory, obscene, or harassing</li>
+                    <li>Violates intellectual property rights</li>
+                    <li>Contains sensitive personal information without consent</li>
+                </ul>
+                
+                <h3>4. System Abuse</h3>
+                <p>You agree not to:</p>
+                <ul>
+                    <li>Overload our infrastructure</li>
+                    <li>Use automated tools to scrape or harvest data</li>
+                    <li>Circumvent usage limits or restrictions</li>
+                    <li>Interfere with other users' enjoyment of the Services</li>
+                </ul>
+                
+                <h3>5. Reporting Violations</h3>
+                <p>To report violations of this AUP, please contact us at <a href="mailto:abuse@havoc.cyber" style="color: var(--accent);">abuse@havoc.cyber</a>.</p>
+                
+                <h3>6. Enforcement</h3>
+                <p>We reserve the right to investigate violations and take appropriate action, including:</p>
+                <ul>
+                    <li>Issuing warnings</li>
+                    <li>Suspending or terminating accounts</li>
+                    <li>Reporting illegal activities to law enforcement</li>
+                </ul>
+                
+                <h3>7. Policy Updates</h3>
+                <p>We may update this AUP periodically. Continued use of the Services constitutes acceptance of the updated policy.</p>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© <span id="current-year"></span> HAVOC CYBERSECURITY. All rights reserved.</p>
+            <p style="margin-top: 1rem;">
+                <a href="terms.html" style="color: var(--primary); text-decoration: none;">Terms of Service</a> | 
+                <a href="terms.html" style="color: var(--primary); text-decoration: none;">Privacy Policy</a> |
+                <a href="contact.html" style="color: var(--primary); text-decoration: none;">Contact Us</a>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Set current date
+        const currentDate = new Date().toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+        
+        document.getElementById('current-date').textContent = currentDate;
+        document.getElementById('current-date-footer').textContent = currentDate;
+        
+        // Set current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Tab functionality
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons and contents
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked button and corresponding content
+                btn.classList.add('active');
+                const tabId = btn.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+                
+                // Update URL without reload
+                history.pushState(null, null, `?tab=${tabId}`);
+            });
+        });
+        
+        // Check URL for tab parameter on load
+        function checkUrlTab() {
+            const params = new URLSearchParams(window.location.search);
+            const tab = params.get('tab');
+            
+            if (tab && document.getElementById(tab)) {
+                // Remove active class from all buttons and contents
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                // Activate the requested tab
+                document.querySelector(`.tab-btn[data-tab="${tab}"]`).classList.add('active');
+                document.getElementById(tab).classList.add('active');
+            }
+        }
+        
+        // Initialize
+        checkUrlTab();
+        
+        // Handle browser back/forward
+        window.addEventListener('popstate', function() {
+            checkUrlTab();
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
