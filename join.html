@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bug Bounty Program Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6e48aa;
+            --secondary: #9d50bb;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --accent: #ff4d4d;
+            --transition: 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeIn 1s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .platforms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .platform-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform var(--transition), box-shadow var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .platform-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary);
+        }
+        
+        .platform-header {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+        
+        .platform-icon {
+            font-size: 2rem;
+            margin-right: 1rem;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+        }
+        
+        .platform-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        
+        .platform-body {
+            padding: 1.5rem;
+        }
+        
+        .platform-description {
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+        
+        .platform-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-weight: bold;
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+        
+        .platform-link {
+            display: block;
+            text-align: center;
+            padding: 12px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background var(--transition);
+        }
+        
+        .platform-link:hover {
+            background: var(--secondary);
+        }
+        
+        .platform-link i {
+            margin-left: 8px;
+        }
+        
+        .features-section {
+            margin: 5rem 0;
+            padding: 3rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2rem;
+            border-radius: 10px;
+            transition: transform var(--transition);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .feature-desc {
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.6;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem 0;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .platforms-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Bug Bounty Program Portal</h1>
+            <p class="subtitle">
+                Join the world's top ethical hacking platforms and get rewarded for finding vulnerabilities.
+                Select a platform below to begin your bug bounty journey.
+            </p>
+        </header>
+        
+        <main>
+            <div class="platforms-grid">
+                <!-- HackerOne -->
+                <div class="platform-card">
+                    <div class="platform-header">
+                        <div class="platform-icon">
+                            <i class="fab fa-hackerone"></i>
+                        </div>
+                        <div class="platform-name">HackerOne</div>
+                    </div>
+                    <div class="platform-body">
+                        <p class="platform-description">
+                            The world's most trusted hacker-powered security platform.
+                            Work with top companies like Google, Twitter, and Uber.
+                        </p>
+                        <div class="platform-stats">
+                            <div class="stat">
+                                <div class="stat-value">$100M+</div>
+                                <div>Paid Out</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">1,500+</div>
+                                <div>Programs</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">1M+</div>
+                                <div>Hackers</div>
+                            </div>
+                        </div>
+                        <a href="https://hackerone.com" class="platform-link" target="_blank">
+                            Join HackerOne <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Bugcrowd -->
+                <div class="platform-card">
+                    <div class="platform-header">
+                        <div class="platform-icon">
+                            <i class="fas fa-bug"></i>
+                        </div>
+                        <div class="platform-name">Bugcrowd</div>
+                    </div>
+                    <div class="platform-body">
+                        <p class="platform-description">
+                            Bugcrowd connects businesses with ethical hackers to identify vulnerabilities
+                            before criminals can exploit them.
+                        </p>
+                        <div class="platform-stats">
+                            <div class="stat">
+                                <div class="stat-value">$50M+</div>
+                                <div>Paid Out</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">1,200+</div>
+                                <div>Programs</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">500K+</div>
+                                <div>Hackers</div>
+                            </div>
+                        </div>
+                        <a href="https://bugcrowd.com" class="platform-link" target="_blank">
+                            Join Bugcrowd <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Synack -->
+                <div class="platform-card">
+                    <div class="platform-header">
+                        <div class="platform-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="platform-name">Synack</div>
+                    </div>
+                    <div class="platform-body">
+                        <p class="platform-description">
+                            Elite crowdsourced security platform with vetted researchers.
+                            Focused on government and enterprise security.
+                        </p>
+                        <div class="platform-stats">
+                            <div class="stat">
+                                <div class="stat-value">Invite</div>
+                                <div>Only</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">Top 1%</div>
+                                <div>Researchers</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">Gov</div>
+                                <div>Programs</div>
+                            </div>
+                        </div>
+                        <a href="https://synack.com" class="platform-link" target="_blank">
+                            Apply to Synack <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- OpenBugBounty -->
+                <div class="platform-card">
+                    <div class="platform-header">
+                        <div class="platform-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="platform-name">OpenBugBounty</div>
+                    </div>
+                    <div class="platform-body">
+                        <p class="platform-description">
+                            Non-profit bug bounty platform focused on coordinated vulnerability disclosure
+                            for any website.
+                        </p>
+                        <div class="platform-stats">
+                            <div class="stat">
+                                <div class="stat-value">100K+</div>
+                                <div>Reports</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">Free</div>
+                                <div>For All</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">Any</div>
+                                <div>Website</div>
+                            </div>
+                        </div>
+                        <a href="https://openbugbounty.org" class="platform-link" target="_blank">
+                            Participate <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- YesWeHack -->
+                <div class="platform-card">
+                    <div class="platform-header">
+                        <div class="platform-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="platform-name">YesWeHack</div>
+                    </div>
+                    <div class="platform-body">
+                        <p class="platform-description">
+                            European leader in bug bounty platforms with strong presence in
+                            both private and public sectors.
+                        </p>
+                        <div class="platform-stats">
+                            <div class="stat">
+                                <div class="stat-value">€10M+</div>
+                                <div>Paid Out</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">30K+</div>
+                                <div>Hackers</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">EU</div>
+                                <div>Focus</div>
+                            </div>
+                        </div>
+                        <a href="https://yeswehack.com" class="platform-link" target="_blank">
+                            Join YesWeHack <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Intigriti -->
+                <div class="platform-card">
+                    <div class="platform-header">
+                        <div class="platform-icon">
+                            <i class="fas fa-crosshairs"></i>
+                        </div>
+                        <div class="platform-name">Intigriti</div>
+                    </div>
+                    <div class="platform-body">
+                        <p class="platform-description">
+                            Fast-growing European bug bounty platform with focus on
+                            continuous security testing.
+                        </p>
+                        <div class="platform-stats">
+                            <div class="stat">
+                                <div class="stat-value">€5M+</div>
+                                <div>Paid Out</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">50K+</div>
+                                <div>Hackers</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">24/7</div>
+                                <div>Testing</div>
+                            </div>
+                        </div>
+                        <a href="https://intigriti.com" class="platform-link" target="_blank">
+                            Join Intigriti <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="features-section">
+                <h2 style="text-align: center; margin-bottom: 1rem; color: var(--primary)">Why Join Bug Bounty Programs?</h2>
+                <p style="text-align: center; max-width: 700px; margin: 0 auto; opacity: 0.8;">
+                    Ethical hacking offers numerous benefits beyond financial rewards. Here's what you can expect:
+                </p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <h3 class="feature-title">Earn Money</h3>
+                        <p class="feature-desc">
+                            Get paid for finding vulnerabilities, with bounties ranging from $100 to $100,000+
+                            for critical discoveries.
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <h3 class="feature-title">Build Reputation</h3>
+                        <p class="feature-desc">
+                            Establish yourself in the security community and get invited to private programs
+                            with higher rewards.
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3 class="feature-title">Learn & Grow</h3>
+                        <p class="feature-desc">
+                            Sharpen your skills by testing real-world systems and learning from other researchers.
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <h3 class="feature-title">Career Opportunities</h3>
+                        <p class="feature-desc">
+                            Many bug bounty hunters get recruited by top tech companies for security positions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>© 2023 Bug Bounty Portal. All platform names and logos are property of their respective owners.</p>
+            <p style="margin-top: 1rem;">
+                <a href="#" style="color: var(--primary); text-decoration: none;">Privacy Policy</a> | 
+                <a href="#" style="color: var(--primary); text-decoration: none;">Terms of Service</a>
+            </p>
+        </footer>
+    </div>
+    
+    <script>
+        // Add animation when scrolling
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            // Animate platform cards
+            const cards = document.querySelectorAll('.platform-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = `opacity 0.5s ease ${index * 0.1}s, transform 0.5s ease ${index * 0.1}s`;
+                observer.observe(card);
+            });
+            
+            // Animate feature cards
+            const features = document.querySelectorAll('.feature-card');
+            features.forEach((feature, index) => {
+                feature.style.opacity = 0;
+                feature.style.transform = 'translateY(20px)';
+                feature.style.transition = `opacity 0.5s ease ${index * 0.1}s, transform 0.5s ease ${index * 0.1}s`;
+                observer.observe(feature);
+            });
+            
+            // Track outbound links
+            document.querySelectorAll('a[href^="http"]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // In a real implementation, you might send analytics here
+                    console.log('Outbound link clicked:', this.href);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
