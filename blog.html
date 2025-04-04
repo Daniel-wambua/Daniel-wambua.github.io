@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAVOC Cyber Blog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6e48aa;
+            --secondary: #9d50bb;
+            --dark: #0d0d15;
+            --darker: #07070b;
+            --light: #e0e0e0;
+            --accent: #ff4d4d;
+            --transition: 0.3s ease;
+            --code-bg: #1e1e2e;
+            --card-bg: rgba(30, 30, 46, 0.5);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', monospace;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(110, 72, 170, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(157, 80, 187, 0.1) 0%, transparent 20%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color var(--transition);
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+        }
+        
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero p {
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.8;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .blog-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform var(--transition), box-shadow var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary);
+        }
+        
+        .featured .blog-card {
+            grid-column: span 2;
+            display: flex;
+        }
+        
+        .featured .blog-image {
+            flex: 1;
+            min-height: 250px;
+        }
+        
+        .featured .blog-content {
+            flex: 1;
+        }
+        
+        .blog-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .blog-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(to top, rgba(13, 13, 21, 0.9), transparent);
+        }
+        
+        .blog-category {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--accent);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 1;
+        }
+        
+        .blog-content {
+            padding: 1.5rem;
+        }
+        
+        .blog-date {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.5rem;
+        }
+        
+        .blog-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .blog-excerpt {
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .read-more {
+            display: inline-block;
+            padding: 8px 15px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: background var(--transition);
+        }
+        
+        .read-more:hover {
+            background: var(--secondary);
+        }
+        
+        /* Article Page Styles */
+        .article-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .article-header {
+            margin-bottom: 2rem;
+        }
+        
+        .article-image {
+            height: 350px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .article-category {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--accent);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        
+        .article-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+        
+        .article-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+        
+        .article-content {
+            margin-bottom: 3rem;
+        }
+        
+        .article-content h2, 
+        .article-content h3 {
+            margin: 2rem 0 1rem;
+            color: var(--primary);
+        }
+        
+        .article-content p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .article-content pre {
+            background: var(--code-bg);
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border-left: 3px solid var(--accent);
+        }
+        
+        .article-content code {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        
+        .back-to-blog {
+            display: inline-block;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .back-to-blog i {
+            margin-right: 5px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 900px) {
+            .featured .blog-card {
+                grid-column: span 1;
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav {
+                display: flex;
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav a {
+                margin: 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .article-image {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="blog-container">
+        <!-- Content will be dynamically inserted here by JavaScript -->
+    </div>
+
+    <script>
+        // Blog data in JSON format (easy to update)
+        const blogData = {
+            "posts": [
+                {
+                    "id": 1,
+                    "title": "Bypassing Modern WAFs with GraphQL Injection",
+                    "excerpt": "Advanced techniques for exploiting GraphQL endpoints protected by next-gen web application firewalls.",
+                    "category": "exploits",
+                    "date": "2025-04-01",
+                    "readTime": "8 min",
+                    "featured": true,
+                    "image": "https://imgs.search.brave.com/VsINkUhLyTfX5ueo2qkWUgQne3ek4POXDgwFU_9lvVY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzA1LzgzLzYxLzY0/LzM2MF9GXzU4MzYx/NjQwNl9ndUEycjRK/Z1JDWmNzbmxoMVp4/TFVGbHJ3WTVQamRI/VC5qcGc",
+                    "content": `<h1>Bypassing Modern WAFs with GraphQL Injection</h1>
+                    <p><strong>Advanced techniques for exploiting GraphQL endpoints protected by next-gen web application firewalls.</strong></p>
+                    <p><em>Posted in: <strong>Exploits</strong> | <strong>Reading Time: 8 min</strong></em></p>
+                    <hr>
+                    <h2>Introduction: The Rise of GraphQL and WAF Evasion</h2>
+                    <p>GraphQL has become the go-to API technology for modern web applications due to its flexibility and efficiency. However, with its growing adoption, security vulnerabilities—especially injection flaws—have become a goldmine for attackers.</p>
+                    <p>Web Application Firewalls (WAFs) are designed to block malicious payloads, but <strong>GraphQL's unique structure often bypasses traditional WAF rules</strong>. In this guide, we'll dissect advanced techniques to exploit GraphQL endpoints even when protected by next-gen WAFs like Cloudflare, AWS Shield, or Imperva.</p>
+                    <hr>
+                    <h2>Why GraphQL Injection is a WAF's Worst Nightmare</h2>
+                    <p>Unlike REST APIs, GraphQL:</p>
+                    <ul>
+                        <li>Uses a <strong>single endpoint</strong> (<code>/graphql</code>), making WAFs struggle to distinguish malicious queries.</li>
+                        <li>Allows <strong>deeply nested queries</strong>, which can evade pattern-matching rules.</li>
+                        <li>Supports <strong>aliases and fragments</strong>, enabling obfuscation of malicious intent.</li>
+                    </ul>
+                    <p>WAFs rely on <strong>signature-based detection</strong>, but GraphQL's dynamic nature breaks these assumptions.</p>
+                    <hr>
+                    <h2>Real-World GraphQL Injection Techniques</h2>
+                    <h3>1. Bypassing WAFs with Comment Obfuscation</h3>
+                    <p>Most WAFs block keywords like <code>union</code>, <code>select</code>, or <code>from</code>. GraphQL allows <strong>comments</strong> (<code>#</code>) to break up malicious strings.</p>
+                    <p><strong>Example:</strong></p>
+                    <pre><code>query {
+  user(id: "1' /**/ UNION /**/ SELECT /**/ 1,2,3-- -") {
+    id
+    name
+  }
+}</code></pre>
+                    <p><strong>WAF Bypass Logic:</strong></p>
+                    <ul>
+                        <li>The WAF sees <code>UNION SELECT</code> as separate tokens due to comments.</li>
+                        <li>The GraphQL parser ignores comments, executing the full SQLi payload.</li>
+                    </ul>
+                    <hr>
+                    <h3>2. Exploiting Introspection to Leak Schema</h3>
+                    <p>GraphQL's <strong>introspection</strong> feature can be abused to extract the entire schema, revealing hidden queries and mutations.</p>
+                    <p><strong>Malicious Query:</strong></p>
+                    <pre><code>query {
+  __schema {
+    types {
+      name
+      fields {
+        name
+        args {
+          name
+          type {
+            name
+          }
+        }
+      }
+    }
+  }
+}</code></pre>
+                    <p><strong>WAF Evasion:</strong></p>
+                    <ul>
+                        <li>Many WAFs <strong>don't block introspection</strong> since it's a legitimate feature.</li>
+                        <li>Attackers can map out hidden admin mutations or sensitive fields.</li>
+                    </ul>
+                    <hr>
+                    <h3>3. Nested Query Attacks (DoS & Data Exfiltration)</h3>
+                    <p>GraphQL allows <strong>recursive queries</strong>, which can crash servers or leak data.</p>
+                    <p><strong>Example (Denial of Service):</strong></p>
+                    <pre><code>query {
+  posts {
+    comments {
+      replies {
+        comments {  # Recursive nesting
+          replies {
+            id
+          }
+        }
+      }
+    }
+  }
+}</code></pre>
+                    <p><strong>Impact:</strong></p>
+                    <ul>
+                        <li>Overwhelms the server with exponential processing.</li>
+                        <li>WAFs often miss this because it looks like a legitimate query.</li>
+                    </ul>
+                    <p><strong>Data Exfiltration Variant:</strong></p>
+                    <pre><code>query {
+  user(id: "1") {
+    posts {
+      privateNotes  # Unauthorized field
+    }
+  }
+}</code></pre>
+                    <p><strong>Bypass Method:</strong></p>
+                    <ul>
+                        <li>Use <strong>aliases</strong> (<code>alias: fieldName</code>) to disguise malicious fields.</li>
+                    </ul>
+                    <hr>
+                    <h3>4. Mutation-Based SQL/NoSQL Injection</h3>
+                    <p>GraphQL mutations (write operations) can be weaponized for injection.</p>
+                    <p><strong>SQLi via Mutation:</strong></p>
+                    <pre><code>mutation {
+  updateUser(input: { id: "1' OR 1=1--", name: "Hacked" }) {
+    user {
+      id
+    }
+  }
+}</code></pre>
+                    <p><strong>WAF Bypass:</strong></p>
+                    <ul>
+                        <li>Some WAFs don't inspect <strong>mutation</strong> payloads as strictly as queries.</li>
+                        <li>JSON-based input can hide injection in nested structures.</li>
+                    </ul>
+                    <hr>
+                    <h3>5. Batching Attacks to Evade Rate Limiting</h3>
+                    <p>GraphQL batching allows multiple queries in one request, bypassing WAF rate limits.</p>
+                    <p><strong>Example:</strong></p>
+                    <pre><code>[
+  { "query": "query { user(id: \\"1\\") { adminData } }" },
+  { "query": "query { user(id: \\"2\\") { creditCard } }" }
+]</code></pre>
+                    <p><strong>Evasion Benefit:</strong></p>
+                    <ul>
+                        <li>WAFs may treat this as <strong>one request</strong>, while the server processes multiple malicious queries.</li>
+                    </ul>
+                    <hr>
+                    <h2>Defensive Measures (For the WAF Admins Reading This)</h2>
+                    <p>If you're securing a GraphQL API:</p>
+                    <ol>
+                        <li><strong>Disable introspection</strong> in production.</li>
+                        <li><strong>Enforce query depth limits</strong> (e.g., max depth of 5).</li>
+                        <li><strong>Use allowlisting</strong> for known queries (persisted queries).</li>
+                        <li><strong>Monitor abnormal query patterns</strong> (e.g., excessive recursion).</li>
+                    </ol>
+                    <hr>
+                    <h2>Conclusion: The Cat-and-Mouse Game Continues</h2>
+                    <p>WAFs are <strong>not enough</strong> to secure GraphQL APIs. Attackers can exploit:</p>
+                    <ul>
+                        <li>✅ <strong>Comment obfuscation</strong></li>
+                        <li>✅ <strong>Introspection leaks</strong></li>
+                        <li>✅ <strong>Nested/recursive queries</strong></li>
+                        <li>✅ <strong>Mutation injections</strong></li>
+                        <li>✅ <strong>Batching attacks</strong></li>
+                    </ul>
+                    <p>The key takeaway? <strong>GraphQL's flexibility is its Achilles' heel.</strong></p>
+                    <p><strong>Stay tuned for Part 2: "Exploiting GraphQL Subscriptions for Real-Time Data Theft."</strong></p>
+                    <hr>
+                    <p><strong>🔥 Want more Havoc-worthy exploits?</strong><br>
+                    Visit <strong><a href="#" style="color: var(--accent);">HAVOC Cyber Portal</a></strong> for cutting-edge security research.</p>
+                    <p><strong>🚨 Disclaimer:</strong> <em>This content is for educational purposes only. HAVOC does not endorse illegal activity.</em></p>`
+                },
+                {
+                    "id": 2,
+                    "title": "Advanced Memory Corruption in Modern Browsers",
+                    "excerpt": "Exploiting JavaScript engine optimizations for RCE in Chrome and Firefox",
+                    "category": "exploits",
+                    "date": "2025-03-25",
+                    "readTime": "12 min",
+                    "featured": false,
+                    "image": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                    "content": "<h1>Advanced Memory Corruption in Modern Browsers</h1>..."
+                },
+                {
+                    "id": 3,
+                    "title": "Evading EDR with Direct Syscall Techniques",
+                    "excerpt": "Bypassing endpoint detection by invoking system calls directly from userland",
+                    "category": "malware",
+                    "date": "2025-03-18",
+                    "readTime": "10 min",
+                    "featured": false,
+                    "image": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                    "content": "<h1>Evading EDR with Direct Syscall Techniques</h1>..."
+                }
+            ]
+        };
+
+        // Function to render blog listing
+        function renderBlogListing() {
+            const featuredPosts = blogData.posts.filter(post => post.featured);
+            const regularPosts = blogData.posts.filter(post => !post.featured);
+            
+            let html = `
+                <header>
+                    <a href="#" class="logo">HAVOC<span>_BLOG</span></a>
+                    <nav>
+                        <a href="#">Exploits</a>
+                        <a href="#">Malware</a>
+                        <a href="#">Forensics</a>
+                        <a href="#">Tools</a>
+                        <a href="#">About</a>
+                    </nav>
+                </header>
+                
+                <div class="hero">
+                    <h1>Cyber Warfare Research</h1>
+                    <p>Cutting-edge security vulnerabilities, exploit development, and offensive techniques</p>
+                </div>
+                
+                <div class="featured">
+                    <h2 style="margin-bottom: 1.5rem; color: var(--accent);">Featured Research</h2>
+                    <div class="blog-grid">
+            `;
+            
+            // Featured posts
+            featuredPosts.forEach(post => {
+                html += `
+                    <div class="blog-card">
+                        <div class="blog-image" style="background-image: url('${post.image}')">
+                            <span class="blog-category">${post.category}</span>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-date">${post.date} • ${post.readTime}</div>
+                            <h3 class="blog-title">${post.title}</h3>
+                            <p class="blog-excerpt">${post.excerpt}</p>
+                            <div class="blog-meta">
+                                <span>HAVOC RESEARCH TEAM</span>
+                                <a href="#" class="read-more" data-id="${post.id}">Read Full Report</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            html += `</div></div><div class="all-posts"><h2 style="margin: 3rem 0 1.5rem; color: var(--accent);">Latest Publications</h2><div class="blog-grid">`;
+            
+            // Regular posts
+            regularPosts.forEach(post => {
+                html += `
+                    <div class="blog-card">
+                        <div class="blog-image" style="background-image: url('${post.image}')">
+                            <span class="blog-category">${post.category}</span>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-date">${post.date} • ${post.readTime}</div>
+                            <h3 class="blog-title">${post.title}</h3>
+                            <p class="blog-excerpt">${post.excerpt}</p>
+                            <div class="blog-meta">
+                                <span>HAVOC RESEARCH TEAM</span>
+                                <a href="#" class="read-more" data-id="${post.id}">Read Full Report</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            html += `</div></div><footer>
+                    <p>© 2025 HAVOC RESEARCH. All rights reserved.</p>
+                    <p style="margin-top: 1rem;">
+                        <a href="#" style="color: var(--primary); text-decoration: none;">Privacy Policy</a> | 
+                        <a href="#" style="color: var(--primary); text-decoration: none;">Terms of Service</a>
+                    </p>
+                </footer>`;
+            
+            document.getElementById('blog-container').innerHTML = html;
+            
+            // Add event listeners to "Read More" buttons
+            document.querySelectorAll('.read-more').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const postId = parseInt(this.getAttribute('data-id'));
+                    renderArticle(postId);
+                });
+            });
+        }
+        
+        // Function to render full article
+        function renderArticle(postId) {
+            const post = blogData.posts.find(p => p.id === postId);
+            
+            if (!post) {
+                renderBlogListing();
+                return;
+            }
+            
+            let html = `
+                <header>
+                    <a href="#" class="logo">HAVOC<span>_BLOG</span></a>
+                    <nav>
+                        <a href="#">Exploits</a>
+                        <a href="#">Malware</a>
+                        <a href="#">Forensics</a>
+                        <a href="#">Tools</a>
+                        <a href="#">About</a>
+                    </nav>
+                </header>
+                
+                <div class="article-container">
+                    <a href="#" class="back-to-blog" id="back-to-blog"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+                    
+                    <div class="article-header">
+                        <div class="article-image" style="background-image: url('${post.image}')">
+                            <span class="article-category">${post.category}</span>
+                        </div>
+                        <h1 class="article-title">${post.title}</h1>
+                        <div class="article-meta">
+                            <span>${post.date}</span>
+                            <span>${post.readTime} read</span>
+                            <span>HAVOC RESEARCH TEAM</span>
+                        </div>
+                    </div>
+                    
+                    <div class="article-content">
+                        ${post.content}
+                    </div>
+                    
+                    <a href="#" class="back-to-blog" id="back-to-blog-bottom"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+                </div>
+                
+                <footer>
+                    <p>© 2025 HAVOC RESEARCH. All rights reserved.</p>
+                    <p style="margin-top: 1rem;">
+                        <a href="#" style="color: var(--primary); text-decoration: none;">Privacy Policy</a> | 
+                        <a href="#" style="color: var(--primary); text-decoration: none;">Terms of Service</a>
+                    </p>
+                </footer>
+            `;
+            
+            document.getElementById('blog-container').innerHTML = html;
+            
+            // Add event listeners to back buttons
+            document.getElementById('back-to-blog').addEventListener('click', function(e) {
+                e.preventDefault();
+                renderBlogListing();
+            });
+            
+            document.getElementById('back-to-blog-bottom').addEventListener('click', function(e) {
+                e.preventDefault();
+                renderBlogListing();
+            });
+        }
+        
+        // Check URL for article ID
+        function checkUrl() {
+            const params = new URLSearchParams(window.location.search);
+            const postId = params.get('post');
+            
+            if (postId) {
+                renderArticle(parseInt(postId));
+            } else {
+                renderBlogListing();
+            }
+        }
+        
+        // Initialize
+        checkUrl();
+        
+        // Handle browser back/forward
+        window.addEventListener('popstate', function() {
+            checkUrl();
+        });
+    </script>
+</body>
+</html>
