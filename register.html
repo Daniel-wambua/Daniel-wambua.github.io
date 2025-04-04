@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAVOC | REGISTER</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="bg-image"></div>
+    <div class="auth-container">
+        <div class="auth-box">
+            <h1 class="glow">REGISTER</h1>
+            <form id="registerForm">
+                <div class="input-group">
+                    <label for="regUsername">USERNAME</label>
+                    <input type="text" id="regUsername" required>
+                </div>
+                <div class="input-group">
+                    <label for="regEmail">EMAIL</label>
+                    <input type="email" id="regEmail" required>
+                </div>
+                <div class="input-group">
+                    <label for="regPassword">PASSWORD</label>
+                    <input type="password" id="regPassword" required>
+                </div>
+              <!-- Add this to your existing register form -->
+<div class="form-group">
+    <label for="confirmPassword">CONFIRM PASSWORD</label>
+    <input type="password" id="confirmPassword" required>
+    <div id="passwordMatchError" class="error-message" style="display: none;">
+        <i class="fas fa-exclamation-triangle"></i> PASSWORDS DO NOT MATCH
+    </div>
+</div>
+                <button type="submit" class="btn glow-on-hover">
+                    <i class="fas fa-user-plus"></i> CREATE ACCOUNT
+                </button>
+            </form>
+            <p>Already have an account? <a href="login.html" class="glow-link">LOGIN</a></p>
+            <a href="index.html" class="back-link">← BACK TO PORTAL</a>
+        </div>
+    </div>
+    <script src="assets/script.js"></script>
+</body>
+</html>

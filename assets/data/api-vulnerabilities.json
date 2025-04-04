@@ -1,0 +1,58 @@
+{
+    "vulnerabilities": [
+        {
+            "id": 1,
+            "title": "BOLA (Broken Object Level Authorization)",
+            "type": "auth",
+            "severity": "critical",
+            "description": "Attackers can access resources they shouldn't by manipulating object IDs in API requests.",
+            "example": "Changing /api/users/123 to /api/users/124 to access another user's data",
+            "mitigation": "Implement proper authorization checks for every object access"
+        },
+        {
+            "id": 2,
+            "title": "GraphQL Injection",
+            "type": "injection",
+            "severity": "high",
+            "description": "Malicious GraphQL queries can lead to data leaks or denial of service.",
+            "example": "Crafting nested queries to overload the server or access unauthorized data",
+            "mitigation": "Implement query depth limiting, cost analysis, and input validation"
+        },
+        {
+            "id": 3,
+            "title": "Mass Assignment",
+            "type": "logic",
+            "severity": "high",
+            "description": "Clients can set object properties they shouldn't by providing unexpected fields.",
+            "example": "Adding 'isAdmin':true to a user registration payload",
+            "mitigation": "Use allowlists for client-provided fields and DTOs"
+        },
+        {
+            "id": 4,
+            "title": "Excessive Data Exposure",
+            "type": "config",
+            "severity": "medium",
+            "description": "APIs return more data than needed, exposing sensitive information.",
+            "example": "User endpoint returns password hashes, API keys, or PII unnecessarily",
+            "mitigation": "Implement strict data filtering and DTOs"
+        },
+        {
+            "id": 5,
+            "title": "Improper Assets Management",
+            "type": "config",
+            "severity": "medium",
+            "description": "Old API versions remain exposed with known vulnerabilities.",
+            "example": "v1/api remains active after v2/api is released with security fixes",
+            "mitigation": "Proper API version retirement and inventory management"
+        },
+        {
+            "id": 6,
+            "title": "Server-Side Request Forgery (SSRF)",
+            "type": "injection",
+            "severity": "critical",
+            "description": "APIs that fetch remote resources can be tricked into accessing internal systems.",
+            "example": "Providing 'http://localhost/admin' as a URL parameter",
+            "mitigation": "Validate and sanitize all URLs, implement allowlists"
+        }
+    ]
+}

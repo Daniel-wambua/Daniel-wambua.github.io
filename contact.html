@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAVOC | CONTACT</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Leaflet CSS for map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+    <div class="bg-image"></div>
+    
+    <!-- Header (Consistent with other pages) -->
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span class="glow">HAVOC</span> CYBER PORTAL
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="bugbounty.html">BUG BOUNTY</a></li>
+                    <li><a href="apihacking.html">API WARFARE</a></li>
+                    <li><a href="cyberblog.html">CYBER BLOG</a></li>
+                    <li><a href="contact.html" class="active">CONTACT</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Contact Hero Section -->
+        <section class="contact-hero">
+            <h1>CONTACT <span class="glow">HAVOC</span></h1>
+            <p>Secure communications only. All messages are encrypted in transit.</p>
+        </section>
+
+        <!-- Contact Grid -->
+        <div class="contact-grid">
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h2><i class="fas fa-paper-plane"></i> SEND ENCRYPTED MESSAGE</h2>
+                <form id="havocContactForm">
+                    <div class="form-group">
+                        <label for="contactName">CODENAME</label>
+                        <input type="text" id="contactName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactEmail">SECURE EMAIL</label>
+                        <input type="email" id="contactEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactSubject">MESSAGE CLASSIFICATION</label>
+                        <select id="contactSubject" required>
+                            <option value="">SELECT CATEGORY</option>
+                            <option value="vulnerability">VULNERABILITY REPORT</option>
+                            <option value="collab">COLLABORATION REQUEST</option>
+                            <option value="training">TRAINING INQUIRY</option>
+                            <option value="other">OTHER (ENCRYPTED)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactMessage">MESSAGE CONTENT</label>
+                        <textarea id="contactMessage" rows="6" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="encryption-notice">
+                            <input type="checkbox" required>
+                            I UNDERSTAND THIS MESSAGE WILL BE ENCRYPTED
+                        </label>
+                    </div>
+                    <button type="submit" class="btn glow-on-hover">
+                        <i class="fas fa-lock"></i> SEND SECURELY
+                    </button>
+                </form>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <h2><i class="fas fa-network-wired"></i> CONNECT WITH HAVOC</h2>
+                
+                <div class="info-card">
+                    <h3><i class="fas fa-map-marker-alt"></i> OPERATIONAL HQ</h3>
+                    <p>Undisclosed Secure Location<br>Global Coverage</p>
+                </div>
+                
+                <div class="info-card">
+                    <h3><i class="fas fa-envelope"></i> ENCRYPTED COMMS</h3>
+                    <p>contact@havoc-ops.xyz<br>PGP: 0xDEADBEEF</p>
+                </div>
+                
+                <div class="info-card">
+                    <h3><i class="fas fa-clock"></i> OPERATIONAL HOURS</h3>
+                    <p>24/7/365<br>Response time: 48h max</p>
+                </div>
+                
+                <!-- Social Media Links -->
+                <div class="social-card">
+                    <h3><i class="fas fa-hashtag"></i> TRACK HAVOC</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-btn github"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-btn twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-btn discord"><i class="fab fa-discord"></i></a>
+                        <a href="#" class="social-btn linkedin"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-btn telegram"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Map -->
+        <section class="map-section">
+            <h2>GLOBAL <span class="glow">OPERATIONS</span> MAP</h2>
+            <div id="havocMap"></div>
+            <p class="map-note">*Locations are approximate for operational security</p>
+        </section>
+    </div>
+
+    <!-- Footer (Consistent with other pages) -->
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 HAVOC CYBER PORTAL | NO LAWS, ONLY CODE</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-discord"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Leaflet JS for map -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="assets/script.js"></script>
+    <script src="assets/contact.js"></script>
+</body>
+</html>

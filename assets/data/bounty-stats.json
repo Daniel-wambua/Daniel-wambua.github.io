@@ -1,0 +1,46 @@
+{
+    "vulnerabilities": [
+        {
+            "name": "Cross-Site Scripting (XSS)",
+            "percentage": 28,
+            "avg_bounty": "$1,200",
+            "trend": "increasing"
+        },
+        {
+            "name": "Broken Access Control",
+            "percentage": 22,
+            "avg_bounty": "$2,500",
+            "trend": "stable"
+        },
+        {
+            "name": "SQL Injection",
+            "percentage": 15,
+            "avg_bounty": "$5,000",
+            "trend": "decreasing"
+        },
+        {
+            "name": "Server-Side Request Forgery (SSRF)",
+            "percentage": 12,
+            "avg_bounty": "$3,800",
+            "trend": "increasing"
+        },
+        {
+            "name": "Insecure Direct Object References (IDOR)",
+            "percentage": 10,
+            "avg_bounty": "$1,500",
+            "trend": "stable"
+        },
+        {
+            "name": "Cross-Site Request Forgery (CSRF)",
+            "percentage": 8,
+            "avg_bounty": "$800",
+            "trend": "decreasing"
+        },
+        {
+            "name": "XML External Entities (XXE)",
+            "percentage": 5,
+            "avg_bounty": "$4,200",
+            "trend": "stable"
+        }
+    ]
+}

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAVOC | API WARFARE</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="bg-image"></div>
+    
+    <!-- Header (Consistent with other pages) -->
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span class="glow">HAVOC</span> CYBER PORTAL
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="bugbounty.html">BUG BOUNTY</a></li>
+                    <li><a href="apihacking.html" class="active">API WARFARE</a></li>
+                    <li><a href="cyberblog.html">CYBER BLOG</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- API Warfare Hero Section -->
+        <section class="api-hero">
+            <h1>API <span class="glow">WARFARE</span> CENTER</h1>
+            <p>Advanced techniques for exploiting, attacking, and securing REST, GraphQL, and SOAP APIs</p>
+            
+            <!-- API Attack Simulator Tabs -->
+            <div class="api-tabs">
+                <button class="api-tab active" data-tab="injector">INJECTION PLAYGROUND</button>
+                <button class="api-tab" data-tab="scanner">ENDPOINT SCANNER</button>
+                <button class="api-tab" data-tab="analyzer">JWT ANALYZER</button>
+            </div>
+        </section>
+
+        <!-- API Attack Simulator -->
+        <section class="api-simulator">
+            <div class="simulator-container" id="injector">
+                <div class="simulator-header">
+                    <h3><i class="fas fa-code"></i> API INJECTION PLAYGROUND</h3>
+                    <div class="api-methods">
+                        <span class="method get">GET</span>
+                        <span class="method post">POST</span>
+                        <span class="method put">PUT</span>
+                        <span class="method delete">DELETE</span>
+                    </div>
+                </div>
+                <div class="simulator-body">
+                    <div class="request-pane">
+                        <div class="url-bar">
+                            <select id="apiProtocol">
+                                <option>https://</option>
+                                <option>http://</option>
+                            </select>
+                            <input type="text" id="apiEndpoint" placeholder="api.target.com/v1/users/{id}">
+                            <button id="sendRequest">EXECUTE <i class="fas fa-play"></i></button>
+                        </div>
+                        <div class="request-options">
+                            <div>
+                                <label>HEADERS</label>
+                                <textarea id="apiHeaders" placeholder='{"Authorization": "Bearer xxx", "Content-Type": "application/json"}'></textarea>
+                            </div>
+                            <div>
+                                <label>PAYLOAD</label>
+                                <textarea id="apiPayload" placeholder='{"id": "1 OR 1=1--"}'></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="response-pane">
+                        <div class="response-tabs">
+                            <button class="resp-tab active">RESPONSE</button>
+                            <button class="resp-tab">LOGS</button>
+                            <button class="resp-tab">EXPLOIT</button>
+                        </div>
+                        <pre id="apiResponse"><span class="json-key">"status"</span>: <span class="json-string">"API Warfare simulation complete"</span>
+<span class="json-key">"vulnerability"</span>: <span class="json-string">"SQL Injection detected"</span>
+<span class="json-key">"severity"</span>: <span class="json-value">"CRITICAL"</span></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hidden tabs (Scanner & Analyzer) -->
+            <div class="simulator-container hidden" id="scanner">
+                <!-- Endpoint scanner content would go here -->
+            </div>
+            <div class="simulator-container hidden" id="analyzer">
+                <!-- JWT analyzer content would go here -->
+            </div>
+        </section>
+
+        <!-- API Vulnerability Database -->
+        <section class="api-database">
+            <div class="database-header">
+                <h2>API <span class="glow">VULNERABILITY</span> DATABASE</h2>
+                <div class="search-filter">
+                    <input type="text" id="apiSearch" placeholder="Search vulnerabilities...">
+                    <select id="apiFilter">
+                        <option value="all">ALL TYPES</option>
+                        <option value="injection">INJECTION</option>
+                        <option value="auth">AUTHENTICATION</option>
+                        <option value="logic">BUSINESS LOGIC</option>
+                        <option value="config">MISCONFIGURATION</option>
+                    </select>
+                </div>
+            </div>
+            <div class="vulnerability-grid" id="vulnGrid">
+                <!-- Dynamically loaded from JSON -->
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer (Consistent with other pages) -->
+    <footer>
+        <div class="footer-content">
+            <p>© 2024 HAVOC CYBER PORTAL | NO LAWS, ONLY CODE</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-discord"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/script.js"></script>
+    <script src="assets/api.js"></script>
+</body>
+</html>

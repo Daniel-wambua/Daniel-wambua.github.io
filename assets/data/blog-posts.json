@@ -1,0 +1,60 @@
+{
+    "posts": [
+        {
+            "id": 1,
+            "title": "Bypassing Modern WAFs with GraphQL Injection",
+            "excerpt": "Advanced techniques for exploiting GraphQL endpoints protected by next-gen web application firewalls.",
+            "category": "exploits",
+            "date": "2025-04-01",
+            "readTime": "8 min",
+            "featured": true,
+            "image": "assets/images/graphql-waf.png",
+            "content": "# Bypassing Modern WAFs with GraphQL Injection\n**Advanced techniques for exploiting GraphQL endpoints protected by next-gen web application firewalls.**\n\n*Posted in: **Exploits*** | *Reading Time: **8 min***\n\n---\n\n## **Introduction: The Rise of GraphQL and WAF Evasion**\n\nGraphQL has become the go-to API technology for modern web applications due to its flexibility and efficiency. However, with its growing adoption, security vulnerabilities—especially injection flaws—have become a goldmine for attackers.\n\nWeb Application Firewalls (WAFs) are designed to block malicious payloads, but **GraphQL's unique structure often bypasses traditional WAF rules**. In this guide, we'll dissect advanced techniques to exploit GraphQL endpoints even when protected by next-gen WAFs like Cloudflare, AWS Shield, or Imperva.\n\n---\n\n## **Why GraphQL Injection is a WAF's Worst Nightmare**\n\nUnlike REST APIs, GraphQL:\n- Uses a **single endpoint** (`/graphql`), making WAFs struggle to distinguish malicious queries.\n- Allows **deeply nested queries**, which can evade pattern-matching rules.\n- Supports **aliases and fragments**, enabling obfuscation of malicious intent.\n\nWAFs rely on **signature-based detection**, but GraphQL's dynamic nature breaks these assumptions.\n\n---\n\n## **Real-World GraphQL Injection Techniques**\n\n### **1. Bypassing WAFs with Comment Obfuscation**\nMost WAFs block keywords like `union`, `select`, or `from`. GraphQL allows **comments** (`#`) to break up malicious strings.\n\n**Example:**\n```graphql\nquery {\n  user(id: \"1' /**/ UNION /**/ SELECT /**/ 1,2,3-- -\") {\n    id\n    name\n  }\n}\n```\n**WAF Bypass Logic:**\n- The WAF sees `UNION SELECT` as separate tokens due to comments.\n- The GraphQL parser ignores comments, executing the full SQLi payload.\n\n---\n\n### **2. Exploiting Introspection to Leak Schema**\nGraphQL's **introspection** feature can be abused to extract the entire schema, revealing hidden queries and mutations.\n\n**Malicious Query:**\n```graphql\nquery {\n  __schema {\n    types {\n      name\n      fields {\n        name\n        args {\n          name\n          type {\n            name\n          }\n        }\n      }\n    }\n  }\n}\n```\n**WAF Evasion:**\n- Many WAFs **don't block introspection** since it's a legitimate feature.\n- Attackers can map out hidden admin mutations or sensitive fields.\n\n---\n\n### **3. Nested Query Attacks (DoS & Data Exfiltration)**\nGraphQL allows **recursive queries**, which can crash servers or leak data.\n\n**Example (Denial of Service):**\n```graphql\nquery {\n  posts {\n    comments {\n      replies {\n        comments {  # Recursive nesting\n          replies {\n            id\n          }\n        }\n      }\n    }\n  }\n}\n```\n**Impact:**\n- Overwhelms the server with exponential processing.\n- WAFs often miss this because it looks like a legitimate query.\n\n**Data Exfiltration Variant:**\n```graphql\nquery {\n  user(id: \"1\") {\n    posts {\n      privateNotes  # Unauthorized field\n    }\n  }\n}\n```\n**Bypass Method:**\n- Use **aliases** (`alias: fieldName`) to disguise malicious fields.\n\n---\n\n### **4. Mutation-Based SQL/NoSQL Injection**\nGraphQL mutations (write operations) can be weaponized for injection.\n\n**SQLi via Mutation:**\n```graphql\nmutation {\n  updateUser(input: { id: \"1' OR 1=1--\", name: \"Hacked\" }) {\n    user {\n      id\n    }\n  }\n}\n```\n**WAF Bypass:**\n- Some WAFs don't inspect **mutation** payloads as strictly as queries.\n- JSON-based input can hide injection in nested structures.\n\n---\n\n### **5. Batching Attacks to Evade Rate Limiting**\nGraphQL batching allows multiple queries in one request, bypassing WAF rate limits.\n\n**Example:**\n```graphql\n[\n  { \"query\": \"query { user(id: \\\"1\\\") { adminData } }\" },\n  { \"query\": \"query { user(id: \\\"2\\\") { creditCard } }\" }\n]\n```\n**Evasion Benefit:**\n- WAFs may treat this as **one request**, while the server processes multiple malicious queries.\n\n---\n\n## **Defensive Measures (For the WAF Admins Reading This)**\nIf you're securing a GraphQL API:\n1. **Disable introspection** in production.\n2. **Enforce query depth limits** (e.g., max depth of 5).\n3. **Use allowlisting** for known queries (persisted queries).\n4. **Monitor abnormal query patterns** (e.g., excessive recursion).\n\n---\n\n## **Conclusion: The Cat-and-Mouse Game Continues**\nWAFs are **not enough** to secure GraphQL APIs. Attackers can exploit:\n✅ **Comment obfuscation**\n✅ **Introspection leaks**\n✅ **Nested/recursive queries**\n✅ **Mutation injections**\n✅ **Batching attacks**\n\nThe key takeaway? **GraphQL's flexibility is its Achilles' heel.**\n\n**Stay tuned for Part 2: \"Exploiting GraphQL Subscriptions for Real-Time Data Theft.\"**\n\n---\n\n**🔥 Want more Havoc-worthy exploits?**\nVisit **[Havoc Cyber Portal](https://havoc.cyber)** for cutting-edge security research.\n\n**🚨 Disclaimer:** *This content is for educational purposes only. HAVOC does not endorse illegal activity.* "
+        },
+        
+        {
+            "id": 2,
+            "title": "The Rise of AI-Powered Malware",
+            "excerpt": "How machine learning is being weaponized to create adaptive, evasive malware strains.",
+            "category": "malware",
+            "date": "2024-03-10",
+            "readTime": "12 min",
+            "featured": true,
+            "image": "assets/images/malware.jpg",
+            "content": "Full article content would go here..."
+        },
+        {
+            "id": 3,
+            "title": "AD Privilege Escalation: From User to Domain Admin",
+            "excerpt": "Step-by-step guide to escalating privileges in Active Directory environments.",
+            "category": "pentesting",
+            "date": "2024-03-05",
+            "readTime": "15 min",
+            "featured": false,
+            "image": "assets/images/ai.webp",
+            "content": "Full article content would go here..."
+        },
+        {
+            "id": 4,
+            "title": "Memory Forensics: Detecting Fileless Malware",
+            "excerpt": "Advanced techniques for analyzing memory dumps to uncover sophisticated attacks.",
+            "category": "forensics",
+            "date": "2024-02-28",
+            "readTime": "10 min",
+            "featured": false,
+            "image": "assets/images/forensics.jpg",
+            "content": "Full article content would go here..."
+        },
+        {
+            "id": 5,
+            "title": "Exploiting Kubernetes Misconfigurations",
+            "excerpt": "How attackers are compromising containerized environments through common mistakes.",
+            "category": "exploits",
+            "date": "2024-02-20",
+            "readTime": "9 min",
+            "featured": false,
+            "image": "assets/images/kubernetes.jpeg",
+            "content": "Full article content would go here..."
+        }
+    ]
+}

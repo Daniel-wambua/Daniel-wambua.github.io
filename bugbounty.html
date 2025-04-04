@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAVOC | BUG BOUNTY</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="bg-image"></div>
+    
+    <!-- Header (Consistent with other pages) -->
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span class="glow">HAVOC</span> CYBER PORTAL
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="bugbounty.html" class="active">BUG BOUNTY</a></li>
+                    <li><a href="apihacking.html">API WARFARE</a></li>
+                    <li><a href="cyberblog.html">CYBER BLOG</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="bounty-hero">
+            <h1>BUG <span class="glow">BOUNTY</span> WAR ROOM</h1>
+            <p>Professional vulnerability hunting with corporate backing and real-world data</p>
+        </section>
+
+        <!-- Corporate Partners -->
+        <section class="partners-section">
+            <h2>OFFICIAL <span class="glow">PARTNERS</span></h2>
+            <div class="partners-grid">
+                <img src="assets/images/meta.png" alt="Meta" title="Meta">
+                <img src="assets/images/google.png" alt="Google" title="Google">
+                <img src="assets/images/tesla.svg" alt="Tesla" title="Tesla">
+                <img src="assets/images/microsoft.png" alt="Microsoft" title="Microsoft">
+                <img src="assets/images/amazon.jpg" alt="Amazon" title="Amazon">
+                <img src="assets/images/hackerone.png" alt="HackerOne" title="HackerOne">
+                <img src="assets/images/Bugcrowd.png" alt="Bugcrowd" title="Bugcrowd">
+                <img src="assets/images/intigriti.png" alt="Intigriti" title="Intigriti">
+            </div>
+        </section>
+
+        <!-- Live Analytics Dashboard -->
+        <section class="analytics-section">
+            <h2>LIVE <span class="glow">BOUNTY</span> ANALYTICS</h2>
+            <div class="analytics-grid">
+                <div class="stat-card">
+                    <h3>TOTAL PAYOUTS (2024)</h3>
+                    <p class="stat-value">$48,927,841</p>
+                    <p class="stat-source">Source: HackerOne 2024 Report</p>
+                </div>
+                <div class="stat-card">
+                    <h3>TOP VULNERABILITY</h3>
+                    <p class="stat-value">XSS (28%)</p>
+                    <p class="stat-source">Source: Bugcrowd 2024 Data</p>
+                </div>
+                <div class="stat-card">
+                    <h3>AVG BOUNTY</h3>
+                    <p class="stat-value">$1,250</p>
+                    <p class="stat-source">Source: Intigriti 2024 Stats</p>
+                </div>
+                <div class="stat-card">
+                    <h3>PROGRAMS MONITORED</h3>
+                    <p class="stat-value">1,742+</p>
+                    <p class="stat-source">Source: HAVOC Intelligence</p>
+                </div>
+            </div>
+            <div class="chart-container">
+                <canvas id="bountyChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Training Videos -->
+        <section class="training-section">
+            <h2>PRO <span class="glow">TRAINING</span> VIDEOS</h2>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Advanced XSS Techniques" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <h3>Advanced XSS in Modern Web Apps</h3>
+                    <p>Google Security Team</p>
+                </div>
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="SSRF Exploitation" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <h3>SSRF to Cloud Metadata Exploitation</h3>
+                    <p>Meta Bug Bounty</p>
+                </div>
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/jyjGneKJynk" title="API Security Testing" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <h3>GraphQL API Vulnerability Hunting</h3>
+                    <p>InsiderPhd</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vulnerability Statistics -->
+        <section class="vuln-stats-section">
+            <h2>2024 <span class="glow">VULNERABILITY</span> LANDSCAPE</h2>
+            <div class="stats-grid" id="vulnStats">
+                <!-- Dynamically loaded from JSON -->
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2>READY TO <span class="glow">HUNT</span>?</h2>
+            <div class="cta-buttons">
+                <a href="register.html" class="cta-btn primary">
+                    <i class="fas fa-user-plus"></i> JOIN PROGRAM
+                </a>
+                <a href="#" class="cta-btn secondary">
+                    <i class="fas fa-book"></i> READ METHODOLOGY
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer (Consistent with other pages) -->
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 HAVOC CYBER PORTAL | NO LAWS, ONLY CODE</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-discord"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chart.js for analytics -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="assets/script.js"></script>
+    <script src="assets/bounty.js"></script>
+</body>
+</html>
